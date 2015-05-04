@@ -1,0 +1,7 @@
+
+  <div class="new-question">
+    <%= form_for @question do |f| %>
+      <%= f.text_field :title %><br>
+      <%= f.text_field :content %><br>
+      <%= f.submit "Edit!", class: "btn-create" %>
+    <% end %>

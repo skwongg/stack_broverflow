@@ -1,0 +1,32 @@
+
+<%= @question.title%><br>
+<%= @question.content%>
+
+ <div class="new-answer">
+    <%= form_for [@question,@answer] do |f| %>
+      <%= f.text_field :title, placeholder: "title" %><br>
+      <%= f.text_field :content, placeholder:"content" %><br>
+      <%= f.submit "Create", class: "btn-create" %>
+
+
+
+
+  <% end %>
+
+
+
+ <% @question.answers.sort_by{|x| x.title}.each do |xyz| %>
+      Reply title: <%= xyz.title  %><br>
+      Reply content: <%= xyz.content %><br>
+      Reply votes: <%= xyz.votes %><br>
+
+  <%= button_to "upvote",question_answer_upvote_path(@question, xyz), method: :put %>
+
+  <%= button_to "downvote", question_answer_downvote_path(@question, xyz), method: :put %>
+
+
+  <%end%>
+  <%= button_to "back that shit up", questions_path, method: :get %>
+
+
+  </div>

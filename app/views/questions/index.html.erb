@@ -1,0 +1,52 @@
+<h3>Questions: </h3>
+
+
+<div class="questions-container">
+  <% @questions.each do |question| %>
+  <div id="<%=question.id%>">
+    <div class="qtt-c <%=question.id%>">
+       Question title: <%= link_to question.title, question_path(question) %>
+    </div>
+    <div class="qtc-c id=<%=question.id%>">
+       Question content: <%= question.content %>
+    </div>
+     <div class="qtc-c id=<%=question.id%>">
+       <p>Question votes: <%= question.votes %></p>
+    </div>
+
+    <div class="qtc-c">
+          <%= button_to "upvote", upvote_question_path(question),{ class: 'quvb', method: :put } %>
+    </div>
+
+   <div class="qtc-c">
+          <%= button_to "downvote", downvote_question_path(question), { class: 'qdvb', method: :put } %>
+    </div>
+
+
+    <div class="qtc-c">
+      <%= button_to "edit", edit_question_path(question), method: :get %>
+    </div>
+
+    <div class="qtc-c">
+      <%= button_to "Delete Question",
+        { :action => "destroy", :id => question.id },
+        :confirm => "Are you sure?", :method => :delete %>
+    </div>
+    </div>
+<% end %>
+
+
+  <div class="new-question">
+    <%= form_for @new do |f| %>
+      <%= f.text_field :title %><br>
+      <%= f.text_field :content %><br>
+      <%= f.submit "Create", class: "btn-create" %>
+  <% end %>
+
+
+
+
+
+
+  </div>
+</div>
